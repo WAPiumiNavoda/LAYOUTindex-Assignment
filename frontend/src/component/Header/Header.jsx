@@ -1,14 +1,27 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logout } from '../../actions/userActions'
 
 
-const Header = () => {
+
+const Header = ({history}) => {
+ 
+  const dispatch =useDispatch();
+  const userLogin = useSelector(state =>state.userLogin);
+  const { userInfo }= userLogin;
+
+  const logoutHandler=()=>{
+    dispatch(logout());
+    history.push('/');
+  }
+
   return (
     <div>
           <Navbar bg="primary" expand="lg" variant='dark'>
@@ -38,7 +51,7 @@ const Header = () => {
             <NavDropdown title="Features" id="navbarScrollingDropdown">
               {/* <NavDropdown.Item ><Link to='/category'>Product</Link></NavDropdown.Item> */}
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
+              <NavDropdown.Item   onClick={logoutHandler}>
                 Logout
               </NavDropdown.Item>
             </NavDropdown>

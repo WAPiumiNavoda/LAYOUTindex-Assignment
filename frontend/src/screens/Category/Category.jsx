@@ -8,7 +8,14 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/esm/Button';
 import axios from 'axios';
 
-const Category = () => {
+const Category = ({history}) => {
+
+// useEffect(() => {
+//      const userInfo = localStorage.getItem("userInfo");
+//        if(userInfo){
+//          history.push('/category');
+//        }
+//      }, [history]);
   
 const [category,setCategory] = useState([]);
 
@@ -23,6 +30,7 @@ console.log(category);
   }, [])
 
   return (
+    
     <div className='my-5 '>
 
     <MainScreen titles='Welcome Piumi'>
