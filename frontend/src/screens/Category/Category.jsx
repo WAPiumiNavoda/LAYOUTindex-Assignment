@@ -6,59 +6,85 @@ import Container from 'react-bootstrap/esm/Container';
 import MainScreen from '../../component/MainScreen';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/esm/Button';
-import axios from 'axios';
+import { useDispatch,useSelector } from 'react-redux';
+import { deleteCategoryAction, listCategory } from '../../actions/categoryAction'
+import ErrorMessage from '../../component/ErrorMessage';
+import Table from 'react-bootstrap/Table';
 
-const Category = ({history}) => {
+const Category = ({history,search}) => {
 
-// useEffect(() => {
-//      const userInfo = localStorage.getItem("userInfo");
-//        if(userInfo){
-//          history.push('/category');
-//        }
-//      }, [history]);
-  
-const [category,setCategory] = useState([]);
 
-const fetchNotes = async() =>{
- const { data } = await axios.get('/api/category');
- setCategory(data);
-}
-console.log(category);
+ const dispatch = useDispatch();
+ const categoryList = useSelector((state) => state.categoryList);
+ const { loading,category,error} = categoryList;
 
-  useEffect(() => {
-   fetchNotes();
-  }, [])
+const userLogin = useSelector(state =>state.userLogin)
+const {userInfo } = userLogin;
+
+ useEffect(()=>{
+   dispatch(listCategory());
+   if(!userInfo){
+    history.push('/');
+   }
+  },[dispatch]);
+
+  //delete function
+  const deleteHandler = (id) => {
+   if(window.confirm("Are You Sure want to delete this ?")){
+    dispatch(deleteCategoryAction(id))
+   }
+  };
 
   return (
     
     <div className='my-5 '>
 
-    <MainScreen titles='Welcome Piumi'>
-        <Link to='createcategory'>
-            <Button  style={{marginLeft: 10,marginBottom:6}} size='lg'>Create New Category</Button>
+    <MainScreen titles='Welcome Piumi' >
+        <Link to='/categorycreate'>
+            <Button  style={{marginLeft: 5,marginBottom:6}} size='lg'>Create New Category</Button>
         </Link>
+      <Table responsive>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Image</th>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
       {
-        category.map((category)=>(
-           <Accordion key={category._id}>
-           <Card style={{ width: '18rem', marginBottom:'50px' }}>
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-      <Card.Body>
-        <Card.Title>{category.title}</Card.Title>
-        <Card.Text>
-         {category.category}
-        </Card.Text>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroup.Item>Cras justo odio</ListGroup.Item>
-      </ListGroup>
-      <div>
-        <Button className='m-5 '>Edit</Button>
-         <Button variant='danger'>Delete</Button>
-      </div>
-    </Card>
-    </Accordion>
+        category?.reverse().filter(filterCategory=>(
+          filterCategory.category.toLowerCase().includes(search.toLowerCase())
+        )).map((category,index)=>(
+        <tr>
+          <td>{index+1}</td>
+          <td><img
+                  style={{
+                    objectFit: "cover",
+                    height: "50px",
+                  }}
+                  src={category.pic}
+                  // src="https://i.ibb.co/w73cvYc/istockphoto-1019835828-612x612.jpg"
+                  alt=""
+                /></td>
+          <td>{category.foodname}</td>
+          <td>{category.price}</td>
+          <td>{category.category}</td>
+          <td>
+              <Button href= {`/categoryUpdate/${category._id}`} className="mx-4">Edit</Button>
+              <Button variant="danger" onClick={()=>deleteHandler(category._id)}>
+                Delete
+              </Button>
+          </td>
+        </tr>
+        
         ))
       }
+      </tbody>
+    </Table>
     </MainScreen>
     </div>
   )

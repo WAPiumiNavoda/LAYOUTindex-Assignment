@@ -2,13 +2,13 @@
     min-height: 93vh;
     display: flex;
     align-items: center;
-    background-image: url("../../images/background1.jpg");
+    background-image: url("../../images/background2.jpg");
     background-position: center;
     background-size: cover;
 }
 
-.title {
-    font-size: 55px;
+.titles {
+    font-size: 40px;
     padding-top: 10px;
 }
 

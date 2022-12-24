@@ -23,7 +23,7 @@
     --bs-yellow: #dd5600;
     --bs-green: #73a839;
     --bs-teal: #20c997;
-    --bs-cyan: #2fa4e7;
+    --bs-cyan: #0f6495;
     --bs-black: #000;
     --bs-white: #fff;
     --bs-gray: #868e96;
@@ -37,7 +37,7 @@
     --bs-gray-700: #495057;
     --bs-gray-800: #343a40;
     --bs-gray-900: #212529;
-    --bs-primary: #2fa4e7;
+    --bs-primary: #0f6495;
     --bs-secondary: #e9ecef;
     --bs-success: #73a839;
     --bs-info: #033c73;
@@ -76,7 +76,7 @@
     --bs-border-radius-xl: 1rem;
     --bs-border-radius-2xl: 2rem;
     --bs-border-radius-pill: 50rem;
-    --bs-link-color: #2fa4e7;
+    --bs-link-color: ##0f6495;
     --bs-link-hover-color: #2683b9;
     --bs-code-color: #e83e8c;
     --bs-highlight-bg: #f8ddcc
@@ -131,7 +131,7 @@ h6 {
     margin-bottom: .5rem;
     font-weight: 500;
     line-height: 1.2;
-    color: #2fa4e7
+    color: #0f6495
 }
 
 .h1,
@@ -2790,7 +2790,7 @@ textarea.form-control-lg {
 .form-range::-moz-range-thumb {
     width: 1rem;
     height: 1rem;
-    background-color: #2fa4e7;
+    background-color: #15608c;
     border: 0;
     border-radius: 1rem;
     -moz-transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;

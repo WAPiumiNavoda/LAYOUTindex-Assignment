@@ -5,6 +5,8 @@ import Row from 'react-bootstrap/esm/Row';
 import Button from 'react-bootstrap/esm/Button';
 
 const MainPage = () => {
+
+
   return (
     <divmain className='main'>
         <Container>

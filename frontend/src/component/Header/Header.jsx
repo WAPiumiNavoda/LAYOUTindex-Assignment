@@ -11,7 +11,7 @@ import { logout } from '../../actions/userActions'
 
 
 
-const Header = ({history}) => {
+const Header = ({history,setSearch}) => {
  
   const dispatch =useDispatch();
   const userLogin = useSelector(state =>state.userLogin);
@@ -24,7 +24,7 @@ const Header = ({history}) => {
 
   return (
     <div>
-          <Navbar bg="primary" expand="lg" variant='dark'>
+      <Navbar bg="primary" expand="lg" variant='dark'>
       <Container>
         <Navbar.Brand href="/">LAYOUTindex</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -36,6 +36,7 @@ const Header = ({history}) => {
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              onChange={(e)=> setSearch(e.target.value)}
             />
             {/* <Button variant="outline-success">Search</Button> */}
           </Form>

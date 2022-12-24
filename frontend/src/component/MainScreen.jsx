@@ -6,22 +6,22 @@ import '../component/MainScreen.css'
 const MainScreen = ({titles,children}) => {
   return (
     <div>
-         <div className='mainback'>
+       <div className='mainback'>
         <Container>
-            <Row>
-                <div className='page'>
-                   {
-                        titles && ( <>
-                           <h1 className='heading'>{titles}</h1>
-                           <hr/>
-                        </>
-                   )}
-                   {children}
-                </div>
-            </Row>
+          <Row>
+            <div className='page'>
+              {
+                titles && ( <>
+                  <h1 className='heading'>{titles}</h1>
+                  <hr/>
+                  </>
+              )}
+              {children}
+             </div>
+          </Row>
         </Container>
-    </div>
-    </div>
+        </div>
+      </div>
   )
 }
 
