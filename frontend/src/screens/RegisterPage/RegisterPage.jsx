@@ -4,13 +4,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Loarding from '../../component/Loarding';
 import ErrorMessage from '../../component/ErrorMessage';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../actions/userActions';
 
-
 const RegisterPage = ({history}) => {
-
 
  //useStates
  const [email,setEmail] = useState("");
@@ -48,11 +45,12 @@ const RegisterPage = ({history}) => {
   return (
     <div>
         <MainScreen>
-               <h1>REGISTER</h1>
+        <h1>REGISTER</h1>
         <hr />
-    {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
+      {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
       {message && <ErrorMessage variant='danger'>{message}</ErrorMessage>}
       {loading && <Loarding />}
+
      <Form onSubmit={ registerHandler}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Name</Form.Label>
@@ -77,8 +75,7 @@ const RegisterPage = ({history}) => {
         onChange={(e)=> setPassword(e.target.value)}
         />
       </Form.Group>
-
-      
+ 
        <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Confirm Password</Form.Label>
         <Form.Control type="password" placeholder="Enter confirmed Password"
@@ -87,14 +84,6 @@ const RegisterPage = ({history}) => {
         />
       </Form.Group>
 
-       {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Confirm Password</Form.Label>
-        <Form.Control type="image/png" placeholder="uploard image" custom
-         value={pic}
-        onChange={(e)=> setPic(e.target.value)}
-        />
-      </Form.Group> */}
-      
       <Form.Group controlId="formFile" className="mb-3">
         <Form.Label>Uploard Image</Form.Label>
         <Form.Control type="file"
@@ -102,8 +91,6 @@ const RegisterPage = ({history}) => {
           onChange={(e)=> setPic(e.target.value)}
         />
       </Form.Group>
-
-  
 
       <Button variant="primary" type="submit">
         Submit
